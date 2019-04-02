@@ -98,7 +98,7 @@ document.fonts.ready.then(_ => {
   ctx.font = 'bold 48px '+ fnt;
   var txt_w = ctx.measureText(txt).width;
   
-  ctx.font = 'bold 48px '+ fnt;
+  ctx.font = 'bold 48px '+ fnt2;
   var txt2_w = ctx.measureText(txt2).width;
   
   canvas.width  = ico_w + txt_w + txt2_w + 15;
