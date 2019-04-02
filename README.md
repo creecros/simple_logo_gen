@@ -16,3 +16,5 @@ https://creecros.github.io/simple_logo_gen/
 - [ ] Incorporate a nice Icon Picker
 - [ ] Effects
 - [ ] More fonts
+
+# Collaborators welcome!
