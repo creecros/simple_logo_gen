@@ -5,10 +5,14 @@
 [![Downloads](https://img.shields.io/github/downloads/simple_logo_gen/Customizer/total.svg)](https://github.com/creecros/simple_logo_gen/releases)
 
 
-# Simple logo gen
+# Simple logo gen (Beta)
 A simple logo generator using fontawesome.
 https://creecros.github.io/simple_logo_gen/
 
 ![image](https://user-images.githubusercontent.com/26339368/55409430-08722400-5530-11e9-8501-303ba7f3f972.png)
 
-
+# To-do list
+- [ ] Multiple Logo Styles
+- [ ] Incorporate a nice Icon Picker
+- [ ] Effects
+- [ ] More fonts
