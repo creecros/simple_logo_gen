@@ -971,6 +971,14 @@
 </div>
 <div class="input-group mb-3">
   <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">fx:</span>
+  </div>
+<div class="btn-group" role="group" aria-label="Basic example">
+<a class="btn btn-outline-primary" id="fx4">Switch</a>
+</div>
+   </div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Out of Block Text:</span>
   </div>
    <input type="text" id="txt" class="form-control" aria-label="outblock" aria-describedby="basic-addon1">
@@ -980,7 +988,7 @@
     <span class="input-group-text" id="basic-addon1">fx:</span>
   </div>
 <div class="btn-group" role="group" aria-label="Basic example">
-<a href="#" class="btn btn-outline-primary btn-sm" id="fx1">Offset</a>
+<a class="btn btn-outline-primary" id="fx1">Offset</a>
 </div>
    </div>
  <div class="input-group mb-3">
@@ -1012,7 +1020,7 @@
     <span class="input-group-text" id="basic-addon1">fx:</span>
   </div>
 <div class="btn-group" role="group" aria-label="Basic example">
-<a href="#" class="btn btn-outline-primary btn-sm" id="fx2">Compliment</a>
+<a class="btn btn-outline-primary" id="fx2">Compliment</a>
 </div>
    </div>
 <div class="input-group mb-3">
@@ -1062,11 +1070,11 @@ var txt2 = "";
 var ico_b = document.getElementById('ico').value;
 var ico = String.fromCharCode(parseInt(ico_b,16))
 var clr = "#000000"
+var ico_clr = clr;
 var fnt = "Arial"
 var fnt2 = "Arial"
 var clr2 = "#ffffff"
 var off_1 = 0;
-var off_2 = 0;
 
 document.getElementById('ico').oninput = function() {
   ico_b = document.getElementById('ico').value;
@@ -1098,6 +1106,15 @@ document.getElementById('fx2').onclick = function() {
   clr = document.getElementById('clr').value;
   clr2 = hexToComplimentary(clr);
   document.getElementById('clr2').value = clr2;
+  renderImage();
+}
+
+document.getElementById('fx4').onclick = function() {
+  if (ico_clr == clr) {
+  ico_clr = document.getElementById('clr2').value;
+  } else {
+  ico_clr = document.getElementById('clr').value;
+  }
   renderImage();
 }
 
@@ -1182,10 +1199,10 @@ document.fonts.ready.then(_ => {
   ctx.fillText(txt, ico_w + off_1 ,50 + off_1);
   }
   ctx.font = '900 48px "Font Awesome 5 Free"';
-  ctx.fillStyle = clr;
+  ctx.fillStyle = ico_clr;
   ctx.fillText(ico, 0 , 50 );
   ctx2.font = '900 48px "Font Awesome 5 Free"';
-  ctx2.fillStyle = clr;
+  ctx2.fillStyle = ico_clr;
   ctx2.fillText(ico, 0, 50);
   ctx.font = 'bold 48px '+ fnt;
   ctx.fillStyle = clr;
