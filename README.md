@@ -9,7 +9,7 @@
 A simple logo generator using fontawesome.
 https://creecros.github.io/simple_logo_gen/
 
-![image](https://user-images.githubusercontent.com/26339368/55409430-08722400-5530-11e9-8501-303ba7f3f972.png)
+![image](https://user-images.githubusercontent.com/26339368/55504167-4188c200-561e-11e9-97cb-3f5a99eea468.png)
 
 # To-do list
 - [ ] Multiple Logo Styles
