@@ -125,13 +125,14 @@ document.fonts.ready.then(_ => {
   canvas2.width = ico_w;
   canvas2.height = 65;
   
-  
+  if (off_1 == 3){
   ctx.font = '900 48px "Font Awesome 5 Free"';
   ctx.fillStyle = clr2;
   ctx.fillText(ico, off_1, 50 + off_1);
   ctx.font = 'bold 48px '+ fnt;
   ctx.fillStyle = clr2;
   ctx.fillText(txt, ico_w + off_1 ,50 + off_1);
+  }
   ctx.font = '900 48px "Font Awesome 5 Free"';
   ctx.fillStyle = clr;
   ctx.fillText(ico, 0 , 50 );
