@@ -975,6 +975,14 @@
   </div>
    <input type="text" id="txt" class="form-control" aria-label="outblock" aria-describedby="basic-addon1">
    </div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">fx:</span>
+  </div>
+<div class="btn-group" role="group" aria-label="Basic example">
+<a href="#" class="btn btn-outline-primary btn-sm" id="fx1">Offset</a>
+</div>
+   </div>
  <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Color 1:</span>
@@ -999,6 +1007,14 @@
   </div>
 <input type="color" value="#ffffff" id="clr2" class="form-control" aria-label="color2" aria-describedby="basic-addon1">
 </div>
+<div class="input-group mb-3">
+  <div class="input-group-prepend">
+    <span class="input-group-text" id="basic-addon1">fx:</span>
+  </div>
+<div class="btn-group" role="group" aria-label="Basic example">
+<a href="#" class="btn btn-outline-primary btn-sm" id="fx2">Compliment</a>
+</div>
+   </div>
 <div class="input-group mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Font 2:</span>
@@ -1045,14 +1061,16 @@ var txt = "";
 var txt2 = "";
 var ico_b = document.getElementById('ico').value;
 var ico = String.fromCharCode(parseInt(ico_b,16))
-var clr = "black"
+var clr = "#000000"
 var fnt = "Arial"
 var fnt2 = "Arial"
-var clr2 = "white"
+var clr2 = "#ffffff"
+var off_1 = 0;
+var off_2 = 0;
 
 document.getElementById('ico').oninput = function() {
   ico_b = document.getElementById('ico').value;
-  ico = String.fromCharCode(parseInt(ico_b,16))
+  ico = String.fromCharCode(parseInt(ico_b,16));
   renderImage();
 }
 
@@ -1063,6 +1081,23 @@ document.getElementById('txt').oninput = function() {
 
 document.getElementById('txt2').oninput = function() {
   txt2 = document.getElementById('txt2').value;
+  renderImage();
+}
+
+document.getElementById('fx1').onclick = function() {
+  if (off_1 !== 3) {
+  off_1 = 3;
+  renderImage();
+  } else {
+  off_1 = 0;
+  renderImage();
+  }
+}
+
+document.getElementById('fx2').onclick = function() {
+  clr = document.getElementById('clr').value;
+  clr2 = hexToComplimentary(clr);
+  document.getElementById('clr2').value = clr2;
   renderImage();
 }
 
@@ -1138,15 +1173,22 @@ document.fonts.ready.then(_ => {
   canvas2.width = ico_w;
   canvas2.height = 65;
   
+  
+  ctx.font = '900 48px "Font Awesome 5 Free"';
+  ctx.fillStyle = clr2;
+  ctx.fillText(ico, off_1, 50 + off_1);
+  ctx.font = 'bold 48px '+ fnt;
+  ctx.fillStyle = clr2;
+  ctx.fillText(txt, ico_w + off_1 ,50 + off_1);
   ctx.font = '900 48px "Font Awesome 5 Free"';
   ctx.fillStyle = clr;
-  ctx.fillText(ico, 0, 50);
+  ctx.fillText(ico, 0 , 50 );
   ctx2.font = '900 48px "Font Awesome 5 Free"';
   ctx2.fillStyle = clr;
   ctx2.fillText(ico, 0, 50);
   ctx.font = 'bold 48px '+ fnt;
   ctx.fillStyle = clr;
-  ctx.fillText(txt, ico_w + 0,50);
+  ctx.fillText(txt, ico_w, 50);
   
   if (txt2 != "") {
   ctx.strokeStyle = clr;
@@ -1184,6 +1226,92 @@ button2.addEventListener('click', function (e) {
     var dataURL2 = canvas.toDataURL('image/png');
     button2.href = dataURL2;
 });
+var button3 = document.getElementById('svg-download');
+button3.addEventListener('click', function (e) {
+    var dataURL3 = canvas.toDataURL('image/svg');
+    button3.href = dataURL3;
+});
+
+/* hexToComplimentary : Converts hex value to HSL, shifts
+ * hue by 180 degrees and then converts hex, giving complimentary color
+ * as a hex value
+ * @param  [String] hex : hex value  
+ * @return [String] : complimentary color as hex value
+ */
+function hexToComplimentary(hex){
+
+    // Convert hex to rgb
+    // Credit to Denis http://stackoverflow.com/a/36253499/4939630
+    var rgb = 'rgb(' + (hex = hex.replace('#', '')).match(new RegExp('(.{' + hex.length/3 + '})', 'g')).map(function(l) { return parseInt(hex.length%2 ? l+l : l, 16); }).join(',') + ')';
+
+    // Get array of RGB values
+    rgb = rgb.replace(/[^\d,]/g, '').split(',');
+
+    var r = rgb[0], g = rgb[1], b = rgb[2];
+
+    // Convert RGB to HSL
+    // Adapted from answer by 0x000f http://stackoverflow.com/a/34946092/4939630
+    r /= 255.0;
+    g /= 255.0;
+    b /= 255.0;
+    var max = Math.max(r, g, b);
+    var min = Math.min(r, g, b);
+    var h, s, l = (max + min) / 2.0;
+
+    if(max == min) {
+        h = s = 0;  //achromatic
+    } else {
+        var d = max - min;
+        s = (l > 0.5 ? d / (2.0 - max - min) : d / (max + min));
+
+        if(max == r && g >= b) {
+            h = 1.0472 * (g - b) / d ;
+        } else if(max == r && g < b) {
+            h = 1.0472 * (g - b) / d + 6.2832;
+        } else if(max == g) {
+            h = 1.0472 * (b - r) / d + 2.0944;
+        } else if(max == b) {
+            h = 1.0472 * (r - g) / d + 4.1888;
+        }
+    }
+
+    h = h / 6.2832 * 360.0 + 0;
+
+    // Shift hue to opposite side of wheel and convert to [0-1] value
+    h+= 180;
+    if (h > 360) { h -= 360; }
+    h /= 360;
+
+    // Convert h s and l values into r g and b values
+    // Adapted from answer by Mohsen http://stackoverflow.com/a/9493060/4939630
+    if(s === 0){
+        r = g = b = l; // achromatic
+    } else {
+        var hue2rgb = function hue2rgb(p, q, t){
+            if(t < 0) t += 1;
+            if(t > 1) t -= 1;
+            if(t < 1/6) return p + (q - p) * 6 * t;
+            if(t < 1/2) return q;
+            if(t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+            return p;
+        };
+
+        var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+        var p = 2 * l - q;
+
+        r = hue2rgb(p, q, h + 1/3);
+        g = hue2rgb(p, q, h);
+        b = hue2rgb(p, q, h - 1/3);
+    }
+
+    r = Math.round(r * 255);
+    g = Math.round(g * 255); 
+    b = Math.round(b * 255);
+
+    // Convert r b and g values to hex
+    rgb = b | (g << 8) | (r << 16); 
+    return "#" + (0x1000000 | rgb).toString(16).substring(1);
+}  
 </script>
   </body>
 </html>
