@@ -14,11 +14,11 @@ var txt2 = "";
 var ico_b = document.getElementById('ico').value;
 var ico = String.fromCharCode(parseInt(ico_b,16))
 var clr = "#000000"
+var ico_clr = clr;
 var fnt = "Arial"
 var fnt2 = "Arial"
 var clr2 = "#ffffff"
 var off_1 = 0;
-var off_2 = 0;
 
 document.getElementById('ico').oninput = function() {
   ico_b = document.getElementById('ico').value;
@@ -50,6 +50,15 @@ document.getElementById('fx2').onclick = function() {
   clr = document.getElementById('clr').value;
   clr2 = hexToComplimentary(clr);
   document.getElementById('clr2').value = clr2;
+  renderImage();
+}
+
+document.getElementById('fx4').onclick = function() {
+  if (ico_clr == clr) {
+  ico_clr = document.getElementById('clr2').value;
+  } else {
+  ico_clr = document.getElementById('clr').value;
+  }
   renderImage();
 }
 
@@ -134,10 +143,10 @@ document.fonts.ready.then(_ => {
   ctx.fillText(txt, ico_w + off_1 ,50 + off_1);
   }
   ctx.font = '900 48px "Font Awesome 5 Free"';
-  ctx.fillStyle = clr;
+  ctx.fillStyle = ico_clr;
   ctx.fillText(ico, 0 , 50 );
   ctx2.font = '900 48px "Font Awesome 5 Free"';
-  ctx2.fillStyle = clr;
+  ctx2.fillStyle = ico_clr;
   ctx2.fillText(ico, 0, 50);
   ctx.font = 'bold 48px '+ fnt;
   ctx.fillStyle = clr;
