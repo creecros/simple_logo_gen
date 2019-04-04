@@ -15,34 +15,37 @@ var ico_b = document.getElementById('ico').value;
 var ico = String.fromCharCode(parseInt(ico_b,16))
 var clr = "#000000"
 var ico_clr = clr;
+var ico_sz = 48;
 var fnt = "Arial"
 var fnt2 = "Arial"
-var clr2 = "#ffffff"
+var clr2 = "#fcfcfc"
 var off_1 = 0;
+var sty = true;
+var shapes = true;
 
 document.getElementById('ico').oninput = function() {
   ico_b = document.getElementById('ico').value;
   ico = String.fromCharCode(parseInt(ico_b,16));
-  renderImage();
+  if (sty) {renderImage();} else {renderImage2();}
 }
 
 document.getElementById('txt').oninput = function() {
   txt = document.getElementById('txt').value;
-  renderImage();
+  if (sty) {renderImage();} else {renderImage2();}
 }
 
 document.getElementById('txt2').oninput = function() {
   txt2 = document.getElementById('txt2').value;
-  renderImage();
+  if (sty) {renderImage();} else {renderImage2();}
 }
 
 document.getElementById('fx1').onclick = function() {
   if (off_1 !== 3) {
   off_1 = 3;
-  renderImage();
+  if (sty) {renderImage();} else {renderImage2();}
   } else {
   off_1 = 0;
-  renderImage();
+  if (sty) {renderImage();} else {renderImage2();}
   }
 }
 
@@ -50,26 +53,36 @@ document.getElementById('fx2').onclick = function() {
   clr = document.getElementById('clr').value;
   clr2 = hexToComplimentary(clr);
   document.getElementById('clr2').value = clr2;
-  renderImage();
+  if (sty) {renderImage();} else {renderImage2();}
 }
 
 document.getElementById('fx4').onclick = function() {
-  if (ico_clr == clr) {
-  ico_clr = document.getElementById('clr2').value;
-  } else {
-  ico_clr = document.getElementById('clr').value;
-  }
-  renderImage();
+  if (sty) { sty = false; renderImage2();} else {sty = true; renderImage();}
+}
+
+document.getElementById('fx5').onclick = function() {
+  if (shapes) { shapes = false;} else {shapes = true;}
+  if (sty) {renderImage();} else {renderImage2();}
 }
 
 document.getElementById('clr').oninput = function() {
   clr = document.getElementById('clr').value;
-  renderImage();
+  if (sty) {renderImage();} else {renderImage2();}
 }
 
 document.getElementById('clr2').oninput = function() {
   clr2 = document.getElementById('clr2').value;
-  renderImage();
+  if (sty) {renderImage();} else {renderImage2();}
+}
+
+document.getElementById('ico_clr').oninput = function() {
+  ico_clr = document.getElementById('ico_clr').value;
+  if (sty) {renderImage();} else {renderImage2();}
+}
+
+document.getElementById('ico_sz').oninput = function() {
+  ico_sz = document.getElementById('ico_sz').value;
+  if (sty) {renderImage();} else {renderImage2();}
 }
 
 var fonts = ["Arial","Montez","Lobster","Josefin Sans","Shadows Into Light","Pacifico","Amatic SC", "Orbitron", "Rokkitt","Righteous","Dancing Script","Bangers","Chewy","Sigmar One","Architects Daughter","Abril Fatface","Covered By Your Grace","Kaushan Script","Gloria Hallelujah","Satisfy","Lobster Two","Comfortaa","Cinzel","Courgette","Annie Use Your Telescope","Baloo","Bowlby One SC","Bungee Inline","Cabin Sketch","Caveat","Contrail One","Damion","Economica","Fascinate Inline","Faster One","Fredericka the Great","Gabriela","Just Another Hand","Kodchasan","Love Ya Like A Sister","Megrim","Monoton","Mouse Memoirs","Podkova","Pompiere","Quicksand","Reenie Beanie","Rokkitt","Six Caps","Source Sans Pro","Special Elite","Spicy Rice","VT323","Wire One"];
@@ -92,13 +105,13 @@ for(var a = 0; a < fonts.length ; a++){
 document.getElementById('select').oninput = function() {
   fnt = document.getElementById('select').value;
   fontChange();
-  renderImage();
+  if (sty) {renderImage();} else {renderImage2();}
 }
 
 document.getElementById('select2').oninput = function() {
   fnt2 = document.getElementById('select2').value;
   fontChange2();
-  renderImage();
+  if (sty) {renderImage();} else {renderImage2();}
 }
 
 function fontChange(){
@@ -117,42 +130,47 @@ function renderImage() {
 
 document.fonts.ready.then(_ => {
   
-  ctx.font = '900 48px "Font Awesome 5 Free"';
+  ctx.font = '900 '+ico_sz+'px "Font Awesome 5 Free"';
   var ico_w = ctx.measureText(ico).width;
+  var ico_h = parseInt(ctx.font.match(/\d+/), 10);
   
   ctx2.font = '900 48px "Font Awesome 5 Free"';
   var ico_w2 = ctx2.measureText(ico).width;
   
   ctx.font = 'bold 48px '+ fnt;
   var txt_w = ctx.measureText(txt).width;
+  var txt_h = parseInt(ctx.font.match(/\d+/), 10);
   
   ctx.font = 'bold 48px '+ fnt2;
   var txt2_w = ctx.measureText(txt2).width;
+  var txt2_h = parseInt(ctx.font.match(/\d+/), 10);
+  
+  var max_h = Math.max(ico_h, txt_h, txt2_h);
   
   canvas.width  = ico_w + txt_w + txt2_w + 15;
-  canvas.height = 65;
-  canvas2.width = ico_w;
-  canvas2.height = 65;
+  canvas.height = max_h+25;
+  canvas2.width = ico_w2 +5;
+  canvas2.height = 58;
   
   if (off_1 == 3){
-  ctx.font = '900 48px "Font Awesome 5 Free"';
+  ctx.font = '900 '+ico_sz+'px "Font Awesome 5 Free"';
   ctx.fillStyle = clr2;
-  ctx.fillText(ico, off_1, 50 + off_1);
+  ctx.fillText(ico, off_1, 48 + off_1);
   ctx.font = 'bold 48px '+ fnt;
   ctx.fillStyle = clr2;
-  ctx.fillText(txt, ico_w + off_1 ,50 + off_1);
+  ctx.fillText(txt, ico_w + off_1 ,48 + off_1);
   }
-  ctx.font = '900 48px "Font Awesome 5 Free"';
+  ctx.font = '900 '+ico_sz+'px "Font Awesome 5 Free"';
   ctx.fillStyle = ico_clr;
-  ctx.fillText(ico, 0 , 50 );
+  ctx.fillText(ico, 0 , 48 );
   ctx2.font = '900 48px "Font Awesome 5 Free"';
   ctx2.fillStyle = ico_clr;
-  ctx2.fillText(ico, 0, 50);
+  ctx2.fillText(ico, 0, 48);
   ctx.font = 'bold 48px '+ fnt;
   ctx.fillStyle = clr;
   ctx.fillText(txt, ico_w, 50);
   
-  if (txt2 != "") {
+  if (txt2 != "" && shapes) {
   ctx.strokeStyle = clr;
   ctx.moveTo(ico_w + 0 + txt_w + 2, 50);
   ctx.lineTo(ico_w + 0 + txt_w + 2, 15);
@@ -178,6 +196,71 @@ document.fonts.ready.then(_ => {
 })
 }
 
+function renderImage2() {
+
+document.fonts.ready.then(_ => {
+  
+  ctx.font = '900 '+ico_sz+'px "Font Awesome 5 Free"';
+  var ico_w = ctx.measureText(ico).width;
+  var ico_h = parseInt(ctx.font.match(/\d+/), 10);
+  
+  ctx2.font = '900 48px "Font Awesome 5 Free"';
+  var ico_w2 = ctx2.measureText(ico).width;
+  
+  ctx.font = 'bold 48px '+ fnt;
+  var txt_w = ctx.measureText(txt).width;
+  var txt_h = parseInt(ctx.font.match(/\d+/), 10);
+  
+  ctx.font = 'bold 18px '+ fnt2;
+  var txt2_w = ctx.measureText(txt2).width;
+  var txt2_h = parseInt(ctx.font.match(/\d+/), 10);
+  
+  var max_w = Math.max(ico_w, txt_w, txt2_w);
+  var center = (max_w + 15) / 2;
+  
+  canvas.width  = max_w + 15;
+  canvas.height = ico_h + txt_h + txt2_h + 35;
+  canvas2.width = ico_w2 +5;
+  canvas2.height = 58;
+  
+  ctx.textAlign = "center";
+  
+  if (off_1 == 3){
+  ctx.font = '900 '+ico_sz+'px "Font Awesome 5 Free"';
+  ctx.fillStyle = clr2;
+  ctx.fillText(ico, center + off_1, ico_h + 12.5 + off_1);
+  ctx.font = 'bold 48px '+ fnt;
+  ctx.fillStyle = clr2;
+  ctx.fillText(txt, center + off_1 ,ico_h + 5 + txt_h + 12.5 + off_1);
+  }
+  ctx.font = '900 '+ico_sz+'px "Font Awesome 5 Free"';
+  ctx.fillStyle = ico_clr;
+  ctx.fillText(ico, center , ico_h + 12.5 );
+  ctx2.font = '900 48px "Font Awesome 5 Free"';
+  ctx2.fillStyle = ico_clr;
+  ctx2.fillText(ico, 0, 48);
+  ctx.font = 'bold 48px '+ fnt;
+  ctx.fillStyle = clr;
+  ctx.fillText(txt, center, ico_h + 5 + txt_h + 12.5);
+  
+  if (txt2 != "" && shapes) {
+  ctx.strokeStyle = clr;
+  ctx.moveTo(center - (max_w/2), ico_h + 10 + txt_h + 12.5);
+  ctx.lineTo(center + (max_w/2), ico_h + 10 + txt_h + 12.5);
+  ctx.lineWidth = 2;
+  ctx.stroke();
+  }
+  
+  ctx.font = 'bold 18px '+ fnt2;
+  ctx.fillStyle = clr2;
+  ctx.fillText(txt2, center,ico_h + 5 + txt_h + 5 + txt2_h + 12.5); 
+
+
+
+})
+}
+
+
 var button = document.getElementById('fav-download');
 button.addEventListener('click', function (e) {
     var dataURL = canvas2.toDataURL('image/png');
@@ -188,11 +271,7 @@ button2.addEventListener('click', function (e) {
     var dataURL2 = canvas.toDataURL('image/png');
     button2.href = dataURL2;
 });
-var button3 = document.getElementById('svg-download');
-button3.addEventListener('click', function (e) {
-    var dataURL3 = canvas.toDataURL('image/svg');
-    button3.href = dataURL3;
-});
+
 
 /* hexToComplimentary : Converts hex value to HSL, shifts
  * hue by 180 degrees and then converts hex, giving complimentary color
