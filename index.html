@@ -1090,6 +1090,7 @@ var shapes = true;
 var off_clr = "#f2f2f2";
 var a_bold = "bold ";
 var m_bold = "bold ";
+var l_sp = 0;
 
 document.getElementById('ico').oninput = function() {
   ico_b = document.getElementById('ico').value;
@@ -1125,7 +1126,7 @@ document.getElementById('fx2').onclick = function() {
 }
 
 document.getElementById('fx4').onclick = function() {
-  if (sty) { sty = false; renderImage2();} else {sty = true; renderImage();}
+  if (sty) { sty = false; document.getElementById('l_sp').hidden = false; renderImage2();} else {sty = true; document.getElementById('l_sp').hidden = true; renderImage();}
 }
 
 document.getElementById('m_bold').onclick = function() {
@@ -1165,6 +1166,11 @@ document.getElementById('ico_clr').oninput = function() {
 
 document.getElementById('ico_sz').oninput = function() {
   ico_sz = document.getElementById('ico_sz').value;
+  if (sty) {renderImage();} else {renderImage2();}
+}
+
+document.getElementById('l_sp').oninput = function() {
+  l_sp = document.getElementById('l_sp').value;
   if (sty) {renderImage();} else {renderImage2();}
 }
 
@@ -1288,7 +1294,7 @@ document.fonts.ready.then(_ => {
 function renderImage2() {
 
 document.fonts.ready.then(_ => {
-  
+  canvas.style.letterSpacing = 0 + 'px';
   ctx.font = '900 '+ico_sz+'px "Font Awesome 5 Free"';
   var ico_w = ctx.measureText(ico).width;
   var ico_h = parseInt(ctx.font.match(/\d+/), 10);
@@ -1300,7 +1306,7 @@ document.fonts.ready.then(_ => {
   var txt_w = ctx.measureText(txt).width;
   var txt_h = parseInt(ctx.font.match(/\d+/), 10);
   
-  ctx.font = a_bold + '18px '+ fnt2;
+  ctx.font = a_bold + '12px '+ fnt2;
   var txt2_w = ctx.measureText(txt2).width;
   var txt2_h = parseInt(ctx.font.match(/\d+/), 10);
   
@@ -1328,25 +1334,29 @@ document.fonts.ready.then(_ => {
   ctx2.font = '900 48px "Font Awesome 5 Free"';
   ctx2.fillStyle = ico_clr;
   ctx2.fillText(ico, 0, 48);
+  canvas.style.letterSpacing = 0 + 'px';
   ctx.font = m_bold + '48px '+ fnt;
   ctx.fillStyle = clr;
   ctx.fillText(txt, center, ico_h + 5 + txt_h + 12.5);
   
   if (txt2 != "" && shapes) {
   ctx.strokeStyle = clr;
-  ctx.moveTo(center - (max_w/2), ico_h + 10 + txt_h + 12.5);
-  ctx.lineTo(center + (max_w/2), ico_h + 10 + txt_h + 12.5);
+  ctx.moveTo(center - (txt_w/2), ico_h + 10 + txt_h + 12.5);
+  ctx.lineTo(center + (txt_w/2), ico_h + 10 + txt_h + 12.5);
   ctx.lineWidth = 2;
   ctx.stroke();
   }
   if (off_1 == 3){
-  ctx.font = a_bold + '18px '+ fnt2;
+  canvas.style.letterSpacing = document.getElementById('l_sp').value + 'px';
+  ctx.font = a_bold + '12px '+ fnt2;
   ctx.fillStyle = off_clr;
   ctx.fillText(txt2, center + off_1 ,ico_h + 5 + txt_h + 5 + txt2_h + 12.5 + off_1); 
   }
-  ctx.font = a_bold + '18px '+ fnt2;
+  canvas.style.letterSpacing = document.getElementById('l_sp').value + 'px';
+  ctx.font = a_bold + '12px '+ fnt2;
   ctx.fillStyle = clr2;
   ctx.fillText(txt2, center,ico_h + 5 + txt_h + 5 + txt2_h + 12.5); 
+  l_sp = 0;
 })
 }
 
