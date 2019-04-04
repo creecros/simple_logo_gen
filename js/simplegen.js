@@ -152,6 +152,8 @@ document.fonts.ready.then(_ => {
   var txt2_h = parseInt(ctx.font.match(/\d+/), 10);
   
   var max_h = Math.max(ico_h, txt_h, txt2_h);
+  var start_ico = max_h + 12.5;
+  var start_txt = max_h + 12.5 + 2;
   
   canvas.width  = ico_w + txt_w + txt2_w + 15;
   canvas.height = max_h+25;
@@ -161,48 +163,48 @@ document.fonts.ready.then(_ => {
   if (off_1 == 3){
   ctx.font = '900 '+ico_sz+'px "Font Awesome 5 Free"';
   ctx.fillStyle = off_clr;
-  ctx.fillText(ico, off_1, 48 + off_1);
+  ctx.fillText(ico, off_1, start_ico + off_1);
   ctx.font = 'bold 48px '+ fnt;
   ctx.fillStyle = off_clr;
-  ctx.fillText(txt, ico_w + off_1 ,48 + off_1);
+  ctx.fillText(txt, ico_w + off_1 ,start_txt + off_1);
   }
   
   if (off_1 == 3 && !shapes){
   ctx.font = 'bold 48px '+ fnt2;
   ctx.fillStyle = off_clr;
-  ctx.fillText(txt2, ico_w + 0 + txt_w + 5 + off_1,50 + off_1); 
+  ctx.fillText(txt2, ico_w + 0 + txt_w + 5 + off_1,start_txt + off_1); 
   }
   
   ctx.font = '900 '+ico_sz+'px "Font Awesome 5 Free"';
   ctx.fillStyle = ico_clr;
-  ctx.fillText(ico, 0 , 48 );
+  ctx.fillText(ico, 0 , start_ico );
   ctx2.font = '900 48px "Font Awesome 5 Free"';
   ctx2.fillStyle = ico_clr;
   ctx2.fillText(ico, 0, 48);
   ctx.font = 'bold 48px '+ fnt;
   ctx.fillStyle = clr;
-  ctx.fillText(txt, ico_w, 50);
+  ctx.fillText(txt, ico_w, start_txt);
   
   if (txt2 != "" && shapes) {
   ctx.strokeStyle = clr;
-  ctx.moveTo(ico_w + 0 + txt_w + 2, 50);
-  ctx.lineTo(ico_w + 0 + txt_w + 2, 15);
-  ctx.arcTo(ico_w + 0 + txt_w + 2, 12, ico_w + 0 + txt_w + 5, 12, 3);
-  ctx.lineTo(ico_w + 0 + txt_w + 2 + txt2_w + 3, 12);
-  ctx.arcTo(ico_w + 0 + txt_w + 2 + txt2_w + 6, 12, ico_w + 0 + txt_w + 2 + txt2_w + 6, 15, 3);
-  ctx.lineTo(ico_w + 0 + txt_w + 2 + txt2_w + 6, 50);
-  ctx.arcTo(ico_w + 0 + txt_w + 2 + txt2_w + 6, 53, ico_w + 0 + txt_w + 2 + txt2_w + 3, 53, 3);
-  ctx.lineTo(ico_w + 0 + txt_w + 5, 53);
-  ctx.arcTo(ico_w + 0 + txt_w + 2, 53, ico_w + 0 + txt_w + 2, 50, 3);
+  ctx.moveTo(ico_w + 0 + txt_w + 2, start_txt);
+  ctx.lineTo(ico_w + 0 + txt_w + 2, start_txt - txt2_h);
+  ctx.arcTo(ico_w + 0 + txt_w + 2, start_txt - txt2_h -3, ico_w + 0 + txt_w + 5, start_txt - txt2_h -3, 3);
+  ctx.lineTo(ico_w + 0 + txt_w + 2 + txt2_w + 3, start_txt - txt2_h -3);
+  ctx.arcTo(ico_w + 0 + txt_w + 2 + txt2_w + 6, start_txt - txt2_h -3, ico_w + 0 + txt_w + 2 + txt2_w + 6, start_txt - txt2_h, 3);
+  ctx.lineTo(ico_w + 0 + txt_w + 2 + txt2_w + 6, start_txt);
+  ctx.arcTo(ico_w + 0 + txt_w + 2 + txt2_w + 6, start_txt + 3, ico_w + 0 + txt_w + 2 + txt2_w + 3, start_txt + 3, 3);
+  ctx.lineTo(ico_w + 0 + txt_w + 5, start_txt + 3);
+  ctx.arcTo(ico_w + 0 + txt_w + 2, start_txt + 3, ico_w + 0 + txt_w + 2, start_txt, 3);
   ctx.lineWidth = 3;
   ctx.stroke();
   ctx.fillStyle = clr;
-  ctx.fillRect(ico_w + 0 + txt_w + 2, 12,txt2_w + 6, 40);
+  ctx.fillRect(ico_w + 0 + txt_w + 2, start_txt - txt2_h -3,txt2_w + 6, txt2_h + 6);
   }
   
   ctx.font = 'bold 48px '+ fnt2;
   ctx.fillStyle = clr2;
-  ctx.fillText(txt2, ico_w + 0 + txt_w + 5,50); 
+  ctx.fillText(txt2, ico_w + 0 + txt_w + 5,start_txt); 
 
 
 
