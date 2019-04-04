@@ -21,15 +21,13 @@
     <i class="fa fa-kiwi-bird" style="font-size: 48px;"></i>
     <h1 class="display-4">Simple Logo Generator</h1>
     <p class="lead">For those who need a favicon or logo, here is a simple tool for you.</p>
-      <hr class="my-4">
-  <p>by creecros</p>
   </div>
 </div>
-<div class="input-group mb-3">
+<div class="input-group input-group-sm mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Icon:</span>
   </div>
-<select id="ico" style="height: 40px; font-family: Arial, 'Font Awesome 5 Free'" class="form-control" aria-label="icon" aria-describedby="basic-addon1">
+<select id="ico" style="font-family: Arial, 'Font Awesome 5 Free'" class="form-control" aria-label="icon" aria-describedby="basic-addon1">
   <option value="f2b9">address-book &#xf2b9;</option>
   <option value="f2bb">address-card &#xf2bb;</option>
   <option value="f042">adjust &#xf042;</option>
@@ -968,69 +966,69 @@
 </select>
 </div>
 <input type="range" class="custom-range" min="25" max="50" step="1" id="ico_sz">
- <div class="input-group mb-3">
+ <div class="input-group input-group-sm mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Icon Color:</span>
   </div>
 <input type="color" id="ico_clr" class="form-control" aria-label="color" aria-describedby="basic-addon1">
 </div>
-<div class="input-group mb-3">
+<div class="input-group input-group-sm mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Icon Effects:</span>
   </div>
 <div class="btn-group" role="group" aria-label="Basic example">
-<a class="btn btn-outline-primary" id="fx4">Style</a>
+<a class="btn btn-outline-primary btn-sm" id="fx4">Style</a>
 </div>
    </div>
-<div class="input-group mb-3">
+<div class="input-group input-group-sm mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Main Text:</span>
   </div>
    <input type="text" id="txt" class="form-control" aria-label="outblock" aria-describedby="basic-addon1">
    </div>
- <div class="input-group mb-3">
+ <div class="input-group input-group-sm mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Main Color:</span>
   </div>
 <input type="color" id="clr" class="form-control" aria-label="color" aria-describedby="basic-addon1">
 </div>
-<div class="input-group mb-3">
+<div class="input-group input-group-sm mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Main Font:</span>
   </div>
 <select id="select" class="form-control" aria-label="font" aria-describedby="basic-addon1"></select>
 </div>
-<div class="input-group mb-3">
+<div class="input-group input-group-sm mb-3">
   <div class="input-group-prepend">
 <a class="btn btn-outline-primary" id="fx1">Offset</a>
   </div>
 <input type="color" id="off_clr" value="#f2f2f2" class="form-control" aria-label="color" aria-describedby="basic-addon1">
    </div>
-<div class="input-group mb-3">
+<div class="input-group input-group-sm mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Accent Text:</span>
   </div>
 <input type="text" id="txt2" class="form-control" aria-label="inblock" aria-describedby="basic-addon1">
 </div>
-<div class="input-group mb-3">
+<div class="input-group input-group-sm mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Accent Color:</span>
   </div>
 <input type="color" value="#cccccc" id="clr2" class="form-control" aria-label="color2" aria-describedby="basic-addon1">
 </div>
-<div class="input-group mb-3">
+<div class="input-group input-group-sm mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Accent Font:</span>
   </div>
 <select id="select2" class="form-control" aria-label="font" aria-describedby="basic-addon1"></select>
 </div>
-<div class="input-group mb-3">
+<div class="input-group input-group-sm mb-3">
   <div class="input-group-prepend">
     <span class="input-group-text" id="basic-addon1">Accent Effects:</span>
   </div>
 <div class="btn-group" role="group" aria-label="Basic example">
-<a class="btn btn-outline-primary" id="fx2">Compliment Color</a>
-<a class="btn btn-outline-warning" id="fx5">Toggle shapes</a>
+<a class="btn btn-outline-primary btn-sm" id="fx2">Compliment Color</a>
+<a class="btn btn-outline-warning btn-sm" id="fx5">Toggle shapes</a>
 </div>
    </div>
 <br>
@@ -1045,12 +1043,15 @@
 <canvas id="logo_image" style="border:none solid #d3d3d3;"></canvas>
 <br>
 <div class="btn-group" role="group" aria-label="Basic example">
-<a href="#" class="btn btn-outline-primary" id="fav-download" download="favicon.png">Download favicon</a>
-<a href="#" class="btn btn btn-outline-secondary" id="logo-download" download="logo.png">Download logo</a>
+<a href="#" class="btn btn-outline-primary btn-sm" id="fav-download" download="favicon.png">Download favicon</a>
+<a href="#" class="btn btn btn-outline-secondary btn-sm" id="logo-download" download="logo.png">Download logo</a>
 </div>
 <br><br>
-<p>
+<div class="alert alert-dark" role="alert">
 If things aren't working, sorry, use Chrome or Firefox...
+</div>
+<p>
+author: <a href="https://github.com/creecros">Craig Crosby</a>
 </p>
 </div>
 
