@@ -23,6 +23,8 @@ var off_1 = 0;
 var sty = true;
 var shapes = true;
 var off_clr = "#f2f2f2";
+var a_bold = "bold ";
+var m_bold = "bold ";
 
 document.getElementById('ico').oninput = function() {
   ico_b = document.getElementById('ico').value;
@@ -59,6 +61,16 @@ document.getElementById('fx2').onclick = function() {
 
 document.getElementById('fx4').onclick = function() {
   if (sty) { sty = false; renderImage2();} else {sty = true; renderImage();}
+}
+
+document.getElementById('m_bold').onclick = function() {
+  if (m_bold == "") { m_bold = "bold ";} else {m_bold = "";}
+  if (sty) {renderImage();} else {renderImage2();}
+}
+
+document.getElementById('a_bold').onclick = function() {
+  if (a_bold == "") { a_bold = "bold ";} else {a_bold = "";}
+  if (sty) {renderImage();} else {renderImage2();}
 }
 
 document.getElementById('fx5').onclick = function() {
@@ -143,11 +155,11 @@ document.fonts.ready.then(_ => {
   ctx2.font = '900 48px "Font Awesome 5 Free"';
   var ico_w2 = ctx2.measureText(ico).width;
   
-  ctx.font = 'bold 48px '+ fnt;
+  ctx.font = m_bold + '48px '+ fnt;
   var txt_w = ctx.measureText(txt).width;
   var txt_h = parseInt(ctx.font.match(/\d+/), 10);
   
-  ctx.font = 'bold 48px '+ fnt2;
+  ctx.font = a_bold + '48px '+ fnt2;
   var txt2_w = ctx.measureText(txt2).width;
   var txt2_h = parseInt(ctx.font.match(/\d+/), 10);
   
@@ -164,13 +176,13 @@ document.fonts.ready.then(_ => {
   ctx.font = '900 '+ico_sz+'px "Font Awesome 5 Free"';
   ctx.fillStyle = off_clr;
   ctx.fillText(ico, off_1, start_ico + off_1);
-  ctx.font = 'bold 48px '+ fnt;
+  ctx.font = m_bold + '48px '+ fnt;
   ctx.fillStyle = off_clr;
   ctx.fillText(txt, ico_w + off_1 ,start_txt + off_1);
   }
   
   if (off_1 == 3 && !shapes){
-  ctx.font = 'bold 48px '+ fnt2;
+  ctx.font = a_bold + '48px '+ fnt2;
   ctx.fillStyle = off_clr;
   ctx.fillText(txt2, ico_w + 0 + txt_w + 5 + off_1,start_txt + off_1); 
   }
@@ -181,7 +193,7 @@ document.fonts.ready.then(_ => {
   ctx2.font = '900 48px "Font Awesome 5 Free"';
   ctx2.fillStyle = ico_clr;
   ctx2.fillText(ico, 0, 48);
-  ctx.font = 'bold 48px '+ fnt;
+  ctx.font = m_bold + '48px '+ fnt;
   ctx.fillStyle = clr;
   ctx.fillText(txt, ico_w, start_txt);
   
@@ -202,12 +214,9 @@ document.fonts.ready.then(_ => {
   ctx.fillRect(ico_w + 0 + txt_w + 2, start_txt - txt2_h -3,txt2_w + 6, txt2_h + 6);
   }
   
-  ctx.font = 'bold 48px '+ fnt2;
+  ctx.font = a_bold + '48px '+ fnt2;
   ctx.fillStyle = clr2;
   ctx.fillText(txt2, ico_w + 0 + txt_w + 5,start_txt); 
-
-
-
 })
 }
 
@@ -222,11 +231,11 @@ document.fonts.ready.then(_ => {
   ctx2.font = '900 48px "Font Awesome 5 Free"';
   var ico_w2 = ctx2.measureText(ico).width;
   
-  ctx.font = 'bold 48px '+ fnt;
+  ctx.font = m_bold + '48px '+ fnt;
   var txt_w = ctx.measureText(txt).width;
   var txt_h = parseInt(ctx.font.match(/\d+/), 10);
   
-  ctx.font = 'bold 18px '+ fnt2;
+  ctx.font = a_bold + '18px '+ fnt2;
   var txt2_w = ctx.measureText(txt2).width;
   var txt2_h = parseInt(ctx.font.match(/\d+/), 10);
   
@@ -244,7 +253,7 @@ document.fonts.ready.then(_ => {
   ctx.font = '900 '+ico_sz+'px "Font Awesome 5 Free"';
   ctx.fillStyle = off_clr;
   ctx.fillText(ico, center + off_1, ico_h + 12.5 + off_1);
-  ctx.font = 'bold 48px '+ fnt;
+  ctx.font = m_bold + '48px '+ fnt;
   ctx.fillStyle = off_clr;
   ctx.fillText(txt, center + off_1 ,ico_h + 5 + txt_h + 12.5 + off_1);
   }
@@ -254,7 +263,7 @@ document.fonts.ready.then(_ => {
   ctx2.font = '900 48px "Font Awesome 5 Free"';
   ctx2.fillStyle = ico_clr;
   ctx2.fillText(ico, 0, 48);
-  ctx.font = 'bold 48px '+ fnt;
+  ctx.font = m_bold + '48px '+ fnt;
   ctx.fillStyle = clr;
   ctx.fillText(txt, center, ico_h + 5 + txt_h + 12.5);
   
@@ -266,16 +275,13 @@ document.fonts.ready.then(_ => {
   ctx.stroke();
   }
   if (off_1 == 3){
-  ctx.font = 'bold 18px '+ fnt2;
+  ctx.font = a_bold + '18px '+ fnt2;
   ctx.fillStyle = off_clr;
   ctx.fillText(txt2, center + off_1 ,ico_h + 5 + txt_h + 5 + txt2_h + 12.5 + off_1); 
   }
-  ctx.font = 'bold 18px '+ fnt2;
+  ctx.font = a_bold + '18px '+ fnt2;
   ctx.fillStyle = clr2;
   ctx.fillText(txt2, center,ico_h + 5 + txt_h + 5 + txt2_h + 12.5); 
-
-
-
 })
 }
 
