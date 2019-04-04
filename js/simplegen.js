@@ -16,12 +16,13 @@ var ico = String.fromCharCode(parseInt(ico_b,16))
 var clr = "#000000"
 var ico_clr = clr;
 var ico_sz = 48;
-var fnt = "Arial"
-var fnt2 = "Arial"
-var clr2 = "#fcfcfc"
+var fnt = "Arial";
+var fnt2 = "Arial";
+var clr2 = "#cccccc";
 var off_1 = 0;
 var sty = true;
 var shapes = true;
+var off_clr = "#f2f2f2";
 
 document.getElementById('ico').oninput = function() {
   ico_b = document.getElementById('ico').value;
@@ -72,6 +73,11 @@ document.getElementById('clr').oninput = function() {
 
 document.getElementById('clr2').oninput = function() {
   clr2 = document.getElementById('clr2').value;
+  if (sty) {renderImage();} else {renderImage2();}
+}
+
+document.getElementById('off_clr').oninput = function() {
+  off_clr = document.getElementById('off_clr').value;
   if (sty) {renderImage();} else {renderImage2();}
 }
 
@@ -154,12 +160,19 @@ document.fonts.ready.then(_ => {
   
   if (off_1 == 3){
   ctx.font = '900 '+ico_sz+'px "Font Awesome 5 Free"';
-  ctx.fillStyle = clr2;
+  ctx.fillStyle = off_clr;
   ctx.fillText(ico, off_1, 48 + off_1);
   ctx.font = 'bold 48px '+ fnt;
-  ctx.fillStyle = clr2;
+  ctx.fillStyle = off_clr;
   ctx.fillText(txt, ico_w + off_1 ,48 + off_1);
   }
+  
+  if (off_1 == 3 && !shapes){
+  ctx.font = 'bold 48px '+ fnt2;
+  ctx.fillStyle = off_clr;
+  ctx.fillText(txt2, ico_w + 0 + txt_w + 5 + off_1,50 + off_1); 
+  }
+  
   ctx.font = '900 '+ico_sz+'px "Font Awesome 5 Free"';
   ctx.fillStyle = ico_clr;
   ctx.fillText(ico, 0 , 48 );
@@ -227,10 +240,10 @@ document.fonts.ready.then(_ => {
   
   if (off_1 == 3){
   ctx.font = '900 '+ico_sz+'px "Font Awesome 5 Free"';
-  ctx.fillStyle = clr2;
+  ctx.fillStyle = off_clr;
   ctx.fillText(ico, center + off_1, ico_h + 12.5 + off_1);
   ctx.font = 'bold 48px '+ fnt;
-  ctx.fillStyle = clr2;
+  ctx.fillStyle = off_clr;
   ctx.fillText(txt, center + off_1 ,ico_h + 5 + txt_h + 12.5 + off_1);
   }
   ctx.font = '900 '+ico_sz+'px "Font Awesome 5 Free"';
@@ -250,7 +263,11 @@ document.fonts.ready.then(_ => {
   ctx.lineWidth = 2;
   ctx.stroke();
   }
-  
+  if (off_1 == 3){
+  ctx.font = 'bold 18px '+ fnt2;
+  ctx.fillStyle = off_clr;
+  ctx.fillText(txt2, center + off_1 ,ico_h + 5 + txt_h + 5 + txt2_h + 12.5 + off_1); 
+  }
   ctx.font = 'bold 18px '+ fnt2;
   ctx.fillStyle = clr2;
   ctx.fillText(txt2, center,ico_h + 5 + txt_h + 5 + txt2_h + 12.5); 
