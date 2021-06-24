@@ -1051,10 +1051,6 @@
 <a href="#" class="btn btn-outline-primary btn-sm" id="fav-download" download="favicon.png">Download favicon</a>
 <a href="#" class="btn btn btn-outline-secondary btn-sm" id="logo-download" download="logo.png">Download logo</a>
 </div>
-<div class="btn-group" role="group" aria-label="Basic example">
-<a href="#" class="btn btn-outline-primary btn-sm" id="fav-download-svg" download="favicon.svg">Download favicon as SVG</a>
-<a href="#" class="btn btn btn-outline-secondary btn-sm" id="logo-download-svg" download="logo.svg">Download logo as SVG</a>
-</div>
 <br><br>
 <div class="alert alert-dark" role="alert">
 If things aren't working, sorry, use Chrome or Firefox...
@@ -1376,18 +1372,6 @@ button2.addEventListener('click', function (e) {
     var dataURL2 = canvas.toDataURL('image/png');
     button2.href = dataURL2;
 });
-	
-var button = document.getElementById('fav-download-svg');
-button.addEventListener('click', function (e) {
-    var dataURL3 = canvas2;
-    button.href = dataURL3;
-});
-var button2 = document.getElementById('logo-download-svg');
-button2.addEventListener('click', function (e) {
-    var dataURL4 = canvas;
-    button2.href = dataURL4;
-});
-
 
 /* hexToComplimentary : Converts hex value to HSL, shifts
  * hue by 180 degrees and then converts hex, giving complimentary color
